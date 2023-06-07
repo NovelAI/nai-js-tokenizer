@@ -1,0 +1,49 @@
+{
+  "devDependencies": {
+    "@types/jest": "^29.5.2",
+    "@typescript-eslint/eslint-plugin": "^5.59.9",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^29.5.0",
+    "prettier": "^2.8.8",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.1.3"
+  },
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "build": "tsc",
+    "lint": "eslint src",
+    "format": "prettier --write \"src/*.ts\"",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint"
+  },
+  "name": "nai-js-tokenizer",
+  "description": "BPE tokenizer used for the NovelAI frontend.",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NovelAI/nai-js-tokenizer.git"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "keywords": [
+    "gpt",
+    "gpt2",
+    "pile",
+    "sentencepiece",
+    "nerdstash",
+    "tokenizer",
+    "novelai"
+  ],
+  "author": "NovelAI",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NovelAI/nai-js-tokenizer/issues"
+  },
+  "homepage": "https://github.com/NovelAI/nai-js-tokenizer"
+}

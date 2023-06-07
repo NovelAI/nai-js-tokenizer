@@ -1,0 +1,1 @@
+The BPE tokenizer used for NovelAI frontend.

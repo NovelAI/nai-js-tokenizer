@@ -1,0 +1,63 @@
+{
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "settings": {
+    "env": {
+      "browser": true,
+      "node": true,
+      "jest": true,
+      "es2021": true
+    },
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {},
+      "node": {}
+    }
+  },
+  "rules": {
+    "semi": [
+      "error",
+      "never"
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 130
+      }
+    ],
+    "no-case-declarations": "off",
+    "comma-spacing": "warn",
+    "eol-last": "warn",
+    "space-before-blocks": "warn",
+    "prefer-const": "warn",
+    "linebreak-style": "off",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off",
+    "indent": "off",
+    "object-curly-spacing": "off",
+    "keyword-spacing": "off",
+    "quotes": "off",
+    "no-console": "error",
+    "@typescript-eslint/keyword-spacing": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/type-annotation-spacing": [
+      "warn"
+    ],
+    "@typescript-eslint/object-curly-spacing": [
+      "warn",
+      "always"
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": "warn",
+    "@typescript-eslint/ban-types": "warn",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/no-explicit-any": "off"
+  }
+}
