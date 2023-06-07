@@ -21,7 +21,7 @@
   },
   "name": "nai-js-tokenizer",
   "description": "BPE tokenizer used for the NovelAI frontend.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": {
