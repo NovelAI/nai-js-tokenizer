@@ -4,6 +4,8 @@ interface Vocabulary {
 
 interface Config {
     splitRegex: string
+    maxEncodeChars: number
+    ignoreMerges: boolean
 }
 
 interface DataEncoder {
@@ -308,6 +310,10 @@ export class Encoder {
     }
 
     private toBPE(text: string): number[] {
+        if (this.encoder[text] !== undefined) {
+            return [this.encoder[text]]
+        }
+
         if (this.cache.has(text)) {
             const cached = this.cache.get(text)
             if (cached) {
@@ -376,18 +382,31 @@ export class Encoder {
     }
 
     encode(data: string): number[] {
-        // Split the data into words.
-        const words = this.splitWords(data)
         const encodedTokens: number[] = []
-        for (const word of words) {
-            // Handle special tokens.
-            if (this.specials[word] !== undefined) {
-                encodedTokens.push(this.specials[word])
-                continue
-            } else {
-                // Encode the word.
-                const fragment = this.toUnicode(word)
-                encodedTokens.push(...this.toBPE(fragment))
+        const chunks: string[] = []
+        const maxEncodeChars = this.config.maxEncodeChars
+        const arr = [...data]
+        if (maxEncodeChars && arr.length > maxEncodeChars) {
+            for (let i = 0; i < arr.length; i += maxEncodeChars) {
+                chunks.push(arr.slice(i, i + maxEncodeChars).join(''))
+            }
+        } else {
+            chunks.push(data)
+        }
+
+        for (const chunk of chunks) {
+            // Split the chunk into words.
+            const words = this.splitWords(chunk)
+            for (const word of words) {
+                // Handle special tokens.
+                if (this.specials[word] !== undefined) {
+                    encodedTokens.push(this.specials[word])
+                    continue
+                } else {
+                    // Encode the word.
+                    const fragment = this.toUnicode(word)
+                    encodedTokens.push(...this.toBPE(fragment))
+                }
             }
         }
         return encodedTokens
